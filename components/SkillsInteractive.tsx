@@ -378,40 +378,7 @@ export default function SkillsInteractive() {
                     ))}
                 </motion.div>
 
-                {/* Skills Summary */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    viewport={{ once: true }}
-                    className="mt-12 text-center"
-                >
-                    <div className="max-w-3xl mx-auto p-5 rounded-xl glass-strong border border-white/10">
-                        <h3 className="text-lg font-semibold mb-3">Expertise Summary</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            {categories.slice(1).map((category) => {
-                                const categorySkills = skills.filter(s => s.category === category.id)
-                                const avgLevel = Math.round(
-                                    categorySkills.reduce((sum, skill) => sum + skill.level, 0) / categorySkills.length
-                                )
-
-                                return (
-                                    <motion.div
-                                        key={category.id}
-                                        className="text-center p-3 rounded-lg bg-white/5"
-                                        whileHover={{ scale: 1.02 }}
-                                    >
-                                        <div className="mb-1 text-white/80">{category.icon}</div>
-                                        <div className="font-medium text-xs mb-1">{category.name}</div>
-                                        <div className="text-base font-bold" style={{ color: category.color }}>
-                                            {avgLevel}%
-                                        </div>
-                                    </motion.div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </motion.div>
+                {/* Removed Expertise Summary as requested */}
             </div>
         </section>
     )

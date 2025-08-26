@@ -69,33 +69,30 @@ export default function Home() {
                         </div>
                     </motion.div>
 
-                    {/* Interactive Stats/Highlights */}
+                    {/* Replace stats with a concise value proposition and CTA list */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="grid grid-cols-2 gap-6"
+                        className="space-y-4"
                     >
-                        {[
-                            { label: 'Projects Built', value: '12+' },
-                            { label: 'Years Experience', value: '3+' },
-                            { label: 'Technologies', value: '15+' },
-                            { label: 'Happy Clients', value: '8+' }
-                        ].map((stat, i) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 + i * 0.1, duration: 0.6 }}
-                                viewport={{ once: true }}
-                                className="text-center p-6 rounded-2xl bg-panel/50 border border-white/10 cursor-glow morph-shape"
-                                whileHover={{ scale: 1.05, y: -5 }}
-                            >
-                                <div className="text-2xl font-bold text-brand mb-1">{stat.value}</div>
-                                <div className="text-sm text-muted">{stat.label}</div>
-                            </motion.div>
-                        ))}
+                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                            <h3 className="text-xl font-semibold mb-2">What I	do</h3>
+                            <ul className="list-disc list-inside text-muted">
+                                <li>Build AI systems that drive measurable business outcomes</li>
+                                <li>Create finance models and dashboards for faster decisions</li>
+                                <li>Design reliable full-stack products, end to end</li>
+                            </ul>
+                        </div>
+                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                            <h3 className="text-xl font-semibold mb-2">How I can help</h3>
+                            <ul className="list-disc list-inside text-muted">
+                                <li>Prototype ML features and deploy to production</li>
+                                <li>Automate reporting and analytics workflows</li>
+                                <li>Ship user-facing apps with clean UI/UX</li>
+                            </ul>
+                        </div>
                     </motion.div>
                 </div>
             </motion.section>

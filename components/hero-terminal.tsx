@@ -12,24 +12,55 @@ export default function HeroTerminal() {
 
     useEffect(() => {
         setMounted(true)
-        // type-in lines using enhanced animation
         const el = termRef.current
         if (!el) return
         const lines = Array.from(el.querySelectorAll('[data-line]')) as HTMLElement[]
-        lines.forEach((l, i) => {
-            l.style.opacity = '0'
-            l.style.transform = 'translateX(-20px)'
-            l.textContent = l.dataset.line || ''
+
+        // prepare lines
+        lines.forEach((l) => {
+            l.style.opacity = '1'
+            l.textContent = ''
         })
 
-        // Enhanced typing animation with cursor effect
-        lines.forEach((l, index) => {
-            setTimeout(() => {
-                l.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
-                l.style.opacity = '1'
-                l.style.transform = 'translateX(0)'
-            }, index * 200)
-        })
+        // type each line sequentially, char-by-char
+        let lineIndex = 0
+        let charIndex = 0
+        let current = lines[0]
+        const fullTexts = lines.map((l) => l.dataset.line || '')
+        const cursor = document.createElement('span')
+        cursor.textContent = '▉'
+        cursor.style.opacity = '0.8'
+        cursor.style.marginLeft = '2px'
+        cursor.style.animation = 'blink 1s steps(1) infinite'
+
+        const style = document.createElement('style')
+        style.innerHTML = `@keyframes blink{50%{opacity:0}}`
+        document.head.appendChild(style)
+
+        const tick = () => {
+            if (!current) return
+            const full = fullTexts[lineIndex]
+            if (charIndex <= full.length) {
+                current.textContent = full.slice(0, charIndex)
+                current.appendChild(cursor)
+                charIndex += Math.random() < 0.1 ? 2 : 1 // slight humanization
+                setTimeout(tick, 24 + Math.floor(Math.random() * 40))
+            } else {
+                // finish this line
+                if (current.contains(cursor)) current.removeChild(cursor)
+                lineIndex += 1
+                charIndex = 0
+                if (lineIndex < lines.length) {
+                    current = lines[lineIndex]
+                    setTimeout(tick, 250)
+                }
+            }
+        }
+        tick()
+
+        return () => {
+            if (style && style.parentNode) style.parentNode.removeChild(style)
+        }
     }, [])
 
     return (

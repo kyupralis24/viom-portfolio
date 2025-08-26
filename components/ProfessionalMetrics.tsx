@@ -87,7 +87,7 @@ export default function ProfessionalMetrics() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.35, delay: idx * 0.06 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        className="relative overflow-hidden rounded-lg border border-white/12 bg-[--panel] p-4 shadow-sm"
+                        className="relative overflow-hidden rounded-lg border border-white/20 bg-white/10 backdrop-blur-md p-4 shadow-sm"
                     >
                         <div className={`absolute inset-0 -z-10 animate-[gradientShift_8s_ease_infinite] bg-gradient-to-br ${m.accent}`} />
                         <div className="flex items-center gap-2 text-[--text]">
@@ -102,7 +102,7 @@ export default function ProfessionalMetrics() {
 
                         <div className="mt-3 text-xs text-[--muted]">{m.valueLabel}</div>
 
-                        <div className="mt-2 h-2 w-full rounded-full bg-white/12">
+                        <div className="mt-2 h-2 w-full rounded-full bg-white/20">
                             <motion.div
                                 className="h-2 rounded-full bg-[--brand]"
                                 style={{ width: `${m.progress}%` }}
