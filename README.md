@@ -482,9 +482,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Email**: viom@example.com
-- **LinkedIn**: [Viom Kapur](https://linkedin.com/in/viomkapur)
-- **GitHub**: [@viomkapur](https://github.com/viomkapur)
+- **Email**: viomkapur@egmail.com
+- **LinkedIn**: [Viom Kapur](https://www.linkedin.com/in/viom-kapur-93434621b/)
+- **GitHub**: [@viomkapur](https://github.com/kyupralis24)
 
 ---
 
