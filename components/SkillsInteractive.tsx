@@ -206,49 +206,15 @@ export default function SkillsInteractive() {
     ]
 
     return (
-        <section ref={containerRef} className="relative py-24 overflow-hidden">
-            {/* Parallax Background */}
-            <motion.div
-                style={{ y }}
-                className="absolute inset-0 bg-gradient-to-b from-transparent via-panel/30 to-transparent"
-            />
-
-            {/* Subtle Background Elements */}
-            <motion.div
-                className="absolute top-20 left-20 w-24 h-24 border border-white/5 rounded-full"
-                animate={{
-                    scale: [1, 1.08, 1],
-                    opacity: [0.1, 0.2, 0.1]
-                }}
-                transition={{ duration: 8, repeat: Infinity }}
-            />
-            <motion.div
-                className="absolute bottom-20 right-20 w-20 h-20 border border-white/5 rounded-full"
-                animate={{
-                    scale: [1, 1.15, 1],
-                    opacity: [0.1, 0.15, 0.1]
-                }}
-                transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-            />
-            <motion.div
-                className="absolute top-1/2 left-10 w-14 h-14 border border-white/5 rounded-full"
-                animate={{
-                    x: [0, 8, 0],
-                    opacity: [0.1, 0.2, 0.1]
-                }}
-                transition={{ duration: 12, repeat: Infinity, delay: 4 }}
-            />
+        <section ref={containerRef} className="relative py-16 overflow-hidden">
+            {/* Minimal background wash */}
+            <motion.div style={{ y }} className="absolute inset-0 bg-white/[0.02]" />
 
             <div className="max-w-7xl mx-auto px-6">
                 {/* Section Header */}
-                <motion.div
-                    style={{ opacity }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-3xl font-bold mb-2">Professional Skills</h2>
-                    <p className="text-base text-muted max-w-2xl mx-auto">
-                        Expertise across AI/ML, finance, and engineering
-                    </p>
+                <motion.div style={{ opacity }} className="text-center mb-8">
+                    <h2 className="text-2xl font-semibold mb-1">Professional Skills</h2>
+                    <p className="text-sm text-muted max-w-xl mx-auto">AI/ML, finance, and engineering</p>
                 </motion.div>
 
                 {/* Category Filter */}
@@ -257,61 +223,48 @@ export default function SkillsInteractive() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-3 mb-10"
+                    className="flex flex-wrap justify-center gap-2 mb-8"
                 >
                     {categories.map((category) => (
                         <motion.button
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm transition-all duration-300 ${activeCategory === category.id
-                                ? 'border-brand bg-brand/15 text-brand'
-                                : 'border-white/15 bg-white/5 text-muted hover:border-white/30 hover:bg-white/10'
+                            className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs transition-colors ${activeCategory === category.id
+                                ? 'border-brand/60 bg-brand/10 text-brand'
+                                : 'border-white/10 bg-white/5 text-muted hover:border-white/20'
                                 }`}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                         >
-                            <span className="text-[13px] text-white/80">{category.icon}</span>
+                            <span className="text-[12px] text-white/80">{category.icon}</span>
                             <span className="font-medium">{category.name}</span>
                         </motion.button>
                     ))}
                 </motion.div>
 
                 {/* Skills Grid */}
-                <motion.div
-                    style={{ scale, opacity }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-                >
+                <motion.div style={{ scale, opacity }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredSkills.map((skill, index) => (
                         <motion.div
                             key={skill.name}
-                            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             transition={{
-                                duration: 0.5,
+                                duration: 0.4,
                                 delay: index * 0.06,
-                                type: "spring",
-                                stiffness: 100
                             }}
                             viewport={{ once: true }}
-                            whileHover={{
-                                y: -6,
-                                transition: { duration: 0.25 }
-                            }}
                             onMouseEnter={() => setHoveredSkill(skill.name)}
                             onMouseLeave={() => setHoveredSkill(null)}
                             className="relative group"
                         >
                             {/* Skill Card */}
                             <motion.div
-                                className={`relative p-4 rounded-xl glass-strong border overflow-hidden cursor-glow skill-card h-full`}
+                                className={`relative p-3 rounded-lg bg-white/5 border border-white/10 overflow-hidden h-full`}
                                 data-skill={skill.category}
-                                style={{
-                                    borderColor: skill.color,
-                                    backgroundColor: hoveredSkill === skill.name ? `${skill.color}10` : undefined
-                                }}
+                                style={{ borderColor: hoveredSkill === skill.name ? `${skill.color}40` : undefined }}
                             >
-                                <div className={`absolute inset-0 -z-10 animate-[gradientShift_10s_ease_infinite] opacity-20`}
-                                    style={{ background: `radial-gradient(800px 200px at 0% 0%, ${skill.color}22, transparent)` }} />
+                                <div className="absolute inset-0 -z-10 opacity-10" style={{ background: `radial-gradient(600px 160px at 0% 0%, ${skill.color}22, transparent)` }} />
 
                                 {/* Skill Icon */}
                                 <motion.div
@@ -323,56 +276,24 @@ export default function SkillsInteractive() {
                                 </motion.div>
 
                                 {/* Skill Name */}
-                                <h3 className="text-lg font-semibold mb-2">{skill.name}</h3>
+                                <h3 className="text-base font-semibold mb-1">{skill.name}</h3>
 
                                 {/* Skill Description */}
-                                <p className="text-muted text-xs mb-4 leading-relaxed">
+                                <p className="text-muted text-xs mb-2 leading-relaxed">
                                     {skill.description}
                                 </p>
 
-                                {/* Skill Level Bar */}
-                                <div className="mb-2">
-                                    <div className="flex justify-between items-center mb-1">
-                                        <span className="text-xs text-muted">Proficiency</span>
-                                        <span className="text-xs font-semibold" style={{ color: skill.color }}>
-                                            {skill.level}%
-                                        </span>
-                                    </div>
-                                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                        <motion.div
-                                            className="h-full rounded-full"
-                                            style={{ backgroundColor: skill.color }}
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: `${skill.level}%` }}
-                                            transition={{ duration: 1.2, delay: 0.4 + index * 0.06 }}
-                                        />
-                                    </div>
-                                </div>
+                                {/* Minimal Category Badge */}
 
-                                {/* Category Badge */}
-                                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[11px] font-medium"
+                                <div className="inline-flex items-center gap-2 px-2 py-0.5 rounded-full text-[10px] font-medium"
                                     style={{
-                                        backgroundColor: `${skill.color}20`,
+                                        backgroundColor: `${skill.color}18`,
                                         color: skill.color,
-                                        border: `1px solid ${skill.color}40`
+                                        border: `1px solid ${skill.color}30`
                                     }}>
                                     <span className="text-white/80">{categories.find(c => c.id === skill.category)?.icon}</span>
                                     {categories.find(c => c.id === skill.category)?.name}
                                 </div>
-
-                                {/* Subtle Hover Outline */}
-                                {hoveredSkill === skill.name && (
-                                    <motion.div
-                                        className="absolute inset-0 rounded-xl pointer-events-none border"
-                                        style={{
-                                            borderColor: `${skill.color}40`,
-                                            background: `${skill.color}05`
-                                        }}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                    />
-                                )}
                             </motion.div>
                         </motion.div>
                     ))}

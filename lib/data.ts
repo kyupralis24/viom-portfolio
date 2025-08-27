@@ -42,7 +42,7 @@ export const PROJECTS: Project[] = [
     title: 'Credit Card Fraud Detection',
     description: 'XGBoost model with 46% detection rate (267x improvement)',
     category: 'ai',
-    image: '/placeholder-headshot.jpg',
+    image: '/projects/creditcard.png',
     tags: ['AI/ML', 'Finance'],
     overview: 'XGBoost fraud detection improving recall',
     tech: 'Python, XGBoost, Pandas',
