@@ -489,3 +489,138 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Note**: This portfolio is actively maintained and updated with new projects and experiences. For the latest version, always check the main branch.
+
+## 🧭 Implementation Guide (What’s where and how to edit)
+
+This section explains exactly how key interactive pieces are implemented and how to customize them quickly.
+
+### Home (Hero) Section
+- File: `components/hero-terminal.tsx`
+- Contains:
+  - Faulty terminal WebGL background (React Bits) via `components/FaultyTerminal.tsx`
+  - Terminal-like typing text implemented with a small `useEffect` typing loop
+  - Right-side panel currently shows a simple “HangingLanyard” badge (`components/HangingLanyard.tsx`)
+
+Edit points:
+- Change hero text by updating the `data-line` values inside the terminal block.
+- Swap the right-side component: either keep `HangingLanyard` (simple) or enable full 3D `Lanyard` (see below).
+
+### Faulty Terminal Background (React Bits)
+- File: `components/FaultyTerminal.tsx`
+- Tech: OGL shaders (vertex + fragment), mouse-reactive uniforms, page-load animation.
+- Usage: embedded full-screen in `hero-terminal.tsx`.
+- Customize: tweak props like `scale`, `gridMul`, `digitSize`, `tint`, `chromaticAberration`, `brightness`.
+
+### Professional Skills (Minimal)
+- File: `components/SkillsInteractive.tsx`
+- Contains a minimalized skills grid with category filter and subtle parallax.
+- Customize:
+  - Change categories or labels at the top of the file.
+  - Adjust each skill’s `name`, `description`, and `color`.
+
+### Experience Timeline and Details
+- Timeline: `components/experience-timeline.tsx`
+- Detail page: `components/ExperienceDetail.tsx` and route `app/experience/[slug]/page.tsx`
+- Data source: `lib/data.ts` (`EXPERIENCE` array)
+
+### Projects Grid + Details
+- Grid: `components/project-grid.tsx`
+- Detail page: `components/ProjectDetail.tsx` and route `app/(pages)/projects/[slug]/page.tsx`
+- Data source: `lib/data.ts` (`PROJECTS` array)
+
+Key features:
+- Cards use React Bits “Tilted Card” style via `components/ui/TiltedCard.tsx` + `components/ui/TiltedCard.css`.
+- If a project does not have an image, a category-specific minimal SVG background is generated on the fly.
+- To add real images, place them in `public/projects/` and set the project’s `image` field (e.g., `/projects/credit-card-fraud.jpg`).
+
+### Project Card Visuals (Tilted Card + SVG fallback)
+- Files: `components/project-grid.tsx`, `components/ui/TiltedCard.tsx`, `components/ui/TiltedCard.css`
+- Behavior:
+  - If `project.image` is provided (and not `/placeholder-headshot.jpg`), it’s used.
+  - Otherwise a minimal SVG is generated using the project `category` color and shapes.
+- Customize:
+  - Update the color per category in the `categories` array at the top of `project-grid.tsx`.
+  - Adjust tilt intensity via `rotateAmplitude` and scale via `scaleOnHover` in the `TiltedCard` props.
+
+### Simple Hanging Lanyard (default)
+- File: `components/HangingLanyard.tsx`
+- Technology: Framer Motion + Next Image, no 3D.
+- Edit:
+  - Update `photoSrc`, `name`, and `role` props where it’s used in `hero-terminal.tsx`.
+  - Replace `/placeholder-headshot.jpg` with your real photo in `public/`.
+
+### Full 3D Lanyard (React Bits, optional)
+- Files:
+  - `components/Lanyard.tsx`, `components/Lanyard.css`
+  - Assets: `public/lanyard/card.glb`, `public/lanyard/lanyard.png`
+- Dependencies (already installed): `three`, `meshline`, `@react-three/fiber`, `@react-three/drei`, `@react-three/rapier`.
+- How to enable:
+  1) Ensure assets exist:
+     - `public/lanyard/card.glb` (with your photo texture baked in — use `https://modelviewer.dev/editor/` to edit)
+     - `public/lanyard/lanyard.png`
+  2) In `components/hero-terminal.tsx`, switch the right panel import to:
+     - `const Lanyard = dynamic(() => import('./Lanyard'), { ssr: false })`
+     - Replace `<HangingLanyard ... />` with `<Lanyard position={[0,0,20]} gravity={[0,-40,0]} />`
+  3) Restart dev server and hard refresh to clear cached 404s.
+
+TypeScript notes (only if needed): Next.js serves files from `public/`, so `.glb`/`.png` module declarations are usually unnecessary. If you choose to import assets as modules instead of loading from `/public`, add declarations in `global.d.ts`.
+
+## 🧱 Data and Content Editing
+
+- Central data: `lib/data.ts`
+  - `PROJECTS` (id, slug, title, description, category, image, tags, overview, tech, results, lessons, link, codePreview)
+  - `EXPERIENCE` (id, slug, company, role, duration, location, description, achievements, skills, color, logo)
+  - `ABOUT` (blurb, fun)
+- Logos and images:
+  - Place under `public/` (e.g., `/bdo_logo.png`, `/projects/your-image.jpg`)
+  - Reference with leading slashes in code: `image: '/projects/your-image.jpg'`
+
+## 🎛️ Theming and Tailwind v4
+
+- Global CSS: `app/globals.css`
+- Tailwind v4 import: `@import "tailwindcss";`
+- Theme variables in an inline `@theme` block (colors, shadows, etc.)
+- Utility classes for glass effects, subtle animations, and cursor glow are defined here.
+
+## 🧩 Animations and Effects
+
+- Framer Motion: basic fade/slide-in, parallax in skills section.
+- CSS keyframes: scanline, gradient shifts, small pulses defined in `app/globals.css`.
+- OGL shader animation for the faulty terminal background.
+
+## 🛠 Editing Checklist (Common Tasks)
+
+- Add a new project:
+  1) Add an entry in `lib/data.ts` under `PROJECTS`.
+  2) Optional: add an image in `public/projects/` and set `image`.
+  3) Visit `/projects/[slug]` to view the generated detail page.
+
+- Add a new experience:
+  1) Add an entry in `lib/data.ts` under `EXPERIENCE` (include `slug` and optional `logo`).
+  2) Visit `/experience/[slug]` to view the detail page.
+
+- Update hero text: edit `components/hero-terminal.tsx` `data-line` strings.
+
+- Adjust brand color or theme: edit `@theme` in `app/globals.css`.
+
+## 🧯 Troubleshooting Cheatsheet
+
+- Image not updating:
+  - Ensure correct path with leading slash (e.g., `/projects/file.jpg`).
+  - Hard refresh (Cmd+Shift+R) and/or restart dev server.
+  - If deployed, rename the file or append `?v=2` to bust CDN cache.
+
+- 3D Lanyard not rendering:
+  - Check `public/lanyard/card.glb` and `public/lanyard/lanyard.png` exist (404s in console mean missing assets).
+  - Switch back to `HangingLanyard` if you want a no-asset fallback.
+
+- Red import underlines:
+  - Confirm `tsconfig.json` paths: `"@/*": ["./*"]`.
+  - Ensure `postcss.config.mjs` uses `"@tailwindcss/postcss"` and `app/globals.css` imports Tailwind v4 correctly.
+
+## 📜 Scripts
+
+- `npm run dev` — Start Next.js in dev mode (Turbopack)
+- `npm run build` — Build production
+- `npm start` — Run production build
+
