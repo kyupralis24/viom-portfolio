@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { EXPERIENCE } from '@/lib/data'
 
@@ -78,12 +79,24 @@ export default function ExperienceDetail({ experience }: ExperienceDetailProps) 
                         whileHover={{ scale: 1.05, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <div
-                            className="w-24 h-24 rounded-2xl flex items-center justify-center text-3xl font-bold text-white shadow-lg"
-                            style={{ backgroundColor: experience.color }}
-                        >
-                            {experience.company.split(' ').map(word => word[0]).join('')}
-                        </div>
+                        {experience.logo ? (
+                            <div className="w-40 h-24 rounded-2xl flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg px-4">
+                                <Image
+                                    src={experience.logo}
+                                    alt={`${experience.company} logo`}
+                                    width={120}
+                                    height={60}
+                                    className="object-contain max-w-full max-h-full"
+                                />
+                            </div>
+                        ) : (
+                            <div
+                                className="w-32 h-32 rounded-2xl flex items-center justify-center text-3xl font-bold text-white shadow-lg"
+                                style={{ backgroundColor: experience.color }}
+                            >
+                                {experience.company.split(' ').map(word => word[0]).join('')}
+                            </div>
+                        )}
                     </motion.div>
 
                     <h1 className="text-5xl font-bold mb-4">{experience.role}</h1>

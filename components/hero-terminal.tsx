@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 
 const FaultyTerminal = dynamic(() => import('./FaultyTerminal'), { ssr: false })
-const HangingLanyard = dynamic(() => import('./HangingLanyard'), { ssr: false })
+const Lanyard = dynamic(() => import('./Lanyard'), { ssr: false })
 
 export default function HeroTerminal() {
     const [mounted, setMounted] = useState(false)
@@ -117,7 +117,7 @@ export default function HeroTerminal() {
                         transition={{ delay: 0.6, duration: 0.8 }}
                         className="relative flex justify-center lg:justify-end"
                     >
-                        {mounted && <HangingLanyard photoSrc="/placeholder-headshot.jpg" name="Viom Kapur" role="AI Engineer · Finance" />}
+                        {mounted && <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />}
                     </motion.div>
                 </div>
             </div>
