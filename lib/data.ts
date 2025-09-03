@@ -186,7 +186,7 @@ export const EXPERIENCE: Experience[] = [
     role: 'Strategy, Risk and Transactions Intern, M&A',
     duration: 'Jun 2025 - Sep 2025',
     location: 'Gurugram, India (Hybrid)',
-    description: 'Executed statutory and risk based audit procedures on a leading real estate developer\'s project in Delhi-NCR, enhancing investor confidence and ensuring compliance in a high stakes capital raise scenario.',
+    description: 'Worked on various projetcs and M&A deals, analyzing market trends, company audits, to support insights given to leadership and clients',
     achievements: [
       'Executed statutory and risk based audit procedures on a leading real estate developer\'s project in Delhi-NCR, enhancing investor confidence and ensuring compliance in a high stakes capital raise scenario.',
       'Developed strategic acquisition proposals in the API/CRAMS space for a global pharmaceutical client, shortlisting targets with valuations ranging from ₹500-1,200 crore and with market trends and company outlooks to support investment decisions.',
@@ -208,10 +208,9 @@ export const EXPERIENCE: Experience[] = [
     location: 'Gurugram, India (Hybrid)',
     description: 'Worked on M&A due diligence and deal value creation projects, analyzing financial data and market trends to support investment decisions.',
     achievements: [
-      'Conducted comprehensive financial due diligence for 3 M&A transactions',
-      'Developed valuation models using DCF and comparable company analysis',
-      'Created detailed investment memorandums with risk assessments',
-      'Collaborated with cross-functional teams to analyze market opportunities'
+      'Executed comprehensive due diligence for M&A transactions, uncovering risks and opportunities across 10 targeted companies that informed strategic deal structures, resulting in successful negotiations.',
+      'Spearheaded the management of a ₹130 crore portfolio for 35 North Ventures\’ India Discovery Fund-I, delivering ovr 15 investment memos and updates that facilitated enhanced decision - making processes, ultimately influencing investments that yielded increase in portfolio performance.',
+      'Evaluated emerging market trends and technology disruptions for over 25 businesses, providing actionable recommendations on innovative processes that strengthened operational resilience by up to 40 %, leading to improved competitive positioning in their respective sectors.',
     ],
     skills: ['Portfolio Management', 'Due Diligence', 'Market Analysis', 'Financial Modeling', 'Valuation'],
     color: '#00d4aa',
@@ -226,10 +225,9 @@ export const EXPERIENCE: Experience[] = [
     location: 'Gurugram, India (Hybrid)',
     description: 'Supported strategic initiatives and product development in the founder\'s office, working on financial planning and web development projects.',
     achievements: [
-      'Led product design initiatives for 2 new financial technology solutions',
-      'Developed comprehensive financial planning frameworks',
-      'Built web applications using modern development technologies',
-      'Managed stakeholder relationships and project timelines'
+      'Spearheaded the design and implementation of innovative mental health solutions, successfully expanding affordable service access to individuals all over India.',
+      'Managed a comprehensive budgeting and financial planning process for multiple programs, achieving a cost reduction of 30 % while ensuring long- term sustainability and resource allocation efficiency for initiatives serving diverse communities.',
+      'Engineered first full-stack website, boosting user engagement and enabling initial service deliveries via optimised digital access.',
     ],
     skills: ['Product Design', 'Financial Planning', 'Web Development', 'Strategic Planning', 'Stakeholder Management'],
     color: '#4ecdc4',
@@ -244,10 +242,9 @@ export const EXPERIENCE: Experience[] = [
     location: 'Gurugram, India (On-Site)',
     description: 'Worked on SAP implementation and AI development projects, focusing on data processing and AWS cloud infrastructure.',
     achievements: [
-      'Developed AI-powered data processing solutions using machine learning',
-      'Implemented SAP modules for enterprise resource planning',
-      'Deployed applications on AWS cloud infrastructure',
-      'Optimized data workflows and system performance'
+      'Developed and deployed custom AI models for image processing, achieving a 75% accuracy rate in automating menu card data extraction, which resulted in a reduction of manual data entry time by 40 hours per month across the team.',
+      'Engineered a CV parsing software that streamlined HR data organization, successfully cutting the candidate processing time from an average of 3 days to just 6 hours, enhancing recruitment efficiency by over 80 %.',
+      'Leveraged AWS for robust data storage and processing capabilities, enabling seamless project execution across multiple teams and improving overall project delivery timelines by 30 %.',
     ],
     skills: ['AI Development', 'Data Processing', 'AWS', 'SAP', 'Machine Learning'],
     color: '#45b7d1',
